@@ -1,0 +1,47 @@
+{
+  "name": "learning-git-2",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/Swor71/learning-git-2/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:html && npm run test:js",
+    "test:html": "glob-run nu-html-checker *.html",
+    "test:js": "glob-run jshint js/*.js",
+    "init-project": "npm run init:dirs && npm run init:files && npm run init:gitignore && npm run init:npm-install",
+    "init:dirs": "bash -c \"mkdir -p sass css vendor images js libs\"",
+    "init:files": "touch README.md index.html sass/style.scss js/script.js",
+    "init:gitignore": "curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -o .gitignore",
+    "init:npm-install": "npm install",
+    "build": "npm run build:sass && npm run build:autoprefixer && npm run test",
+    "build:clean": "rimraf -rf css/*.css",
+    "build:sass": "node-sass --output-style compact -o css sass",
+    "build:cssdev": "npm run build:sass-dev && npm run build:autoprefixer",
+    "build:sass-dev": "node-sass --output-style expanded --source-map true -o css sass",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "watch": "npm run build && parallelshell \"npm run watch:sassprefixer\" \"npm run watch:browsersync\"",
+    "watch:sassprefixer": "onchange sass/*.scss -- npm run build:cssdev",
+    "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\" --serveStatic \"./\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swor71/learning-git-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Swor71/learning-git-2/issues"
+  },
+  "homepage": "https://github.com/Swor71/learning-git-2#readme",
+  "dependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.18.13",
+    "glob-run": "^0.1.6",
+    "jshint": "^2.9.5",
+    "node-sass": "^4.7.2",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^3.3.0",
+    "parallelshell": "^3.0.2",
+    "rimraf": "^2.6.2"
+  }
+}
