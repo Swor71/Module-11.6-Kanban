@@ -28,3 +28,5 @@ $('.create-column').click(function(){
 		}
 	});
 });
+
+

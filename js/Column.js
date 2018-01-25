@@ -34,16 +34,19 @@ function Column(id, name) {
 			})
 		});
 
+		$columnTitle.click(function() {
+			var newColumnName = prompt('Change column name to:');
+			if(newColumnName != self.name) {
+				$columnTitle.text(newColumnName);
+				self.editColumn(newColumnName);
+			};
+		});
+
 		$column.append($columnTitle).append($columnDelete).append($columnAddCard).append($columnCardList);
 		
 		return $column;
 	}
-
-	$('.column-title').click(function() {
-		var newColumnName = prompt('Change column name to:');
-		self.$element.text(newColumnName);
-		self.changeColumnName();
-	});
+	
 }
 
 Column.prototype = {
@@ -60,17 +63,16 @@ Column.prototype = {
 			}
 		});
 	},
-	changeColumnName: function() {
+	editColumn: function(newColumnName) {
 		var self = this;
 		$.ajax({
 			url: baseUrl + '/column/' + self.id,
 			method: 'PUT',
 			data: {
-				id: self.id,
-				name: self.newColumnName
+				name: newColumnName
 			},
 			success: function(response) {
-				self.id = response.id;
+				
 			}
 		});
 	}
