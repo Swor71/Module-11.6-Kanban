@@ -46,7 +46,6 @@ function Column(id, name) {
 		
 		return $column;
 	}
-	
 }
 
 Column.prototype = {
@@ -72,7 +71,7 @@ Column.prototype = {
 				name: newColumnName
 			},
 			success: function(response) {
-				
+				self.name = newColumnName;
 			}
 		});
 	}

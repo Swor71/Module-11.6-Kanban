@@ -30,4 +30,3 @@ function setupCards(col, cards) {
 		col.createCard(card);
 	});
 }
-

@@ -28,5 +28,3 @@ $('.create-column').click(function(){
 		}
 	});
 });
-
-
