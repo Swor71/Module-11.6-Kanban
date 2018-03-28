@@ -6,7 +6,7 @@ function Column(id, name) {
 	this.$element = createColumn();
 
 	function createColumn() {
-		var $column = $('<div>').addClass('column');
+		var $column = $('<div>').addClass('column').attr('id', self.id);
 		var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
 		var $columnCardList = $('<ul>').addClass('column-card-list');
 		var $columnDelete = $('<button>').addClass('btn-delete').text('x');
@@ -19,8 +19,8 @@ function Column(id, name) {
 		$columnAddCard.click(function(event){
 			var cardName = prompt("Enter the name of the card");
 			event.preventDefault();
-			
-			$.ajax({
+			if (cardName) {
+				$.ajax({
 				url: baseUrl + '/card',
 				method: 'POST',
 				data: {
@@ -32,11 +32,12 @@ function Column(id, name) {
 					self.createCard(card);
 				}
 			})
+			}
 		});
 
 		$columnTitle.click(function() {
 			var newColumnName = prompt('Change column name to:');
-			if(newColumnName != self.name) {
+			if(newColumnName != self.name && newColumnName !== '') {
 				$columnTitle.text(newColumnName);
 				self.editColumn(newColumnName);
 			};
@@ -68,7 +69,8 @@ Column.prototype = {
 			url: baseUrl + '/column/' + self.id,
 			method: 'PUT',
 			data: {
-				name: newColumnName
+				name: newColumnName,
+				bootcamp_kanban_column_id: self.id
 			},
 			success: function(response) {
 				self.name = newColumnName;

@@ -16,7 +16,8 @@ function initSortable() {
 
 $('.create-column').click(function(){
 	var columnName = prompt('Enter the name of a column');
-	$.ajax({
+	if (columnName) {
+		$.ajax({
 		url: baseUrl + '/column',
 		method: 'POST',
 		data: {
@@ -27,4 +28,5 @@ $('.create-column').click(function(){
 			board.createColumn(column);
 		}
 	});
+	}
 });

@@ -11,7 +11,16 @@
             <div id="board" class="board">
                 <div class="board-header">
                     <h1>Kanban board</h1>
-                    <button class="create-column">Add a column</button>
+                    <div>
+                        <button class="create-column">Add a column</button>
+                        <button id="myBtn">Help?</button>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>To change column or card's name simply click on it :)</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="column-container"></div>
             </div>
@@ -23,6 +32,6 @@
     <script type="text/javascript" src="js/Card.js"></script>
     <script type="text/javascript" src="js/Board.js"></script>
     <script type="text/javascript" src="js/App.js"></script>
-    <!-- <script type="text/javascript" src="js/script.js"></script> -->
+    <script type="text/javascript" src="js/modal.js"></script>
 </body>
 </html>

@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+$dark-blue: #183059;
+$light-blue: #276FBF;
+$whitish: #F6F4F3;
+$redish: #F03A47;
+
 * {
 	margin: 0;
 	padding: 0;
@@ -12,19 +17,20 @@ ul, li {
 }
 
 body {
-	background-color: #276FBF;
-	color: #F6F4F3;
+	background-color: $light-blue;
+	color: $whitish;
 	font-family: 'Ubuntu', sans-serif;
 }
 
 button {
 	cursor: pointer;
-	color: #F6F4F3;
+	outline: none;
+	color: $whitish;
 	background-color: transparent;
-	border: 2px dashed #F03A47;
+	border: 2px dashed $redish;
 	font-size: 1.2em;
 	&:focus {
-		border: 2px dashed #F03A47;
+		border: 2px dashed $redish;
 	}
 }
 
@@ -45,11 +51,10 @@ button {
 
 .kanban {
 	.grid {
-		
 		.board {
 			.board-header {
-				background-color: #183059;
-				color: #fff;
+				background-color: $dark-blue;
+				color: $whitish;
 				display: flex;
 				justify-content: space-around;
 				align-items: center;
@@ -57,23 +62,62 @@ button {
 				width: 100%;
 				h1 {
 					font-size: 2.5em;
-					border-bottom: 2px dashed #F03A47;
+					border-bottom: 2px dashed $redish;
 				}
 				.create-column {
 					width: 200px;
 					height: 50px;
+					outline: none;
 				}
-				
+				.modal {
+					display: none; 
+					position: fixed; 
+					z-index: 1; 
+					left: 0;
+					top: 0;
+					width: 100%; 
+					height: 100%; 
+					overflow: auto; 
+					background-color: rgb(0,0,0); 
+					background-color: rgba(0,0,0,0.6);
+				}
+				#myBtn {
+					border: none;
+					padding-left: 10px;
+				}
+				.modal-content {
+					color: $whitish;
+					background-color: $light-blue;
+					border: 2px solid $whitish;
+					position: relative;
+					text-align: center;
+					margin: 100px auto;
+					padding: 20px;
+					width: 500px;
+					font-weight: bolder;
+					font-size: 20px;
+					user-select: none;
+					.close {
+						color: $whitish;
+						position: absolute;
+						top: -5px;
+						right: 5px;
+						font-size: 28px;
+						font-weight: bold;
+						&:hover {
+							cursor: pointer;
+						}
+					}
+				}
 			}
 			.column-container {
-				background-color: #276FBF;
-				
+				background-color: $light-blue;
 				display: flex;
 				justify-content: space-evenly;
 				flex-wrap: wrap;
 				.column {
 					border-radius: 6px;
-					background-color: #183059;
+					background-color: $dark-blue;
 					margin: 10px;
 					min-width: 350px;
 					min-height: 410px;
@@ -84,7 +128,7 @@ button {
 						font-size: 2em;
 						text-align: center;
 						padding: 15px;
-						border-bottom: 3px solid #276FBF;
+						border-bottom: 3px solid $light-blue;
 					}
 							
 					> .btn-delete {
@@ -101,13 +145,13 @@ button {
 						display: block;
 						width: 330px;
 						height: 50px;
-						margin: 10px ;
+						margin: 10px auto;
 						text-align: center;
 					}
 					.card {
-						background-color: #183059;
+						background-color: $dark-blue;
 						margin: 10px auto;
-						border: 3px solid #276FBF;
+						border: 3px solid $light-blue;
 						border-radius: 6px;
 						min-height: 80px;
 						width: 330px;
@@ -115,7 +159,6 @@ button {
 							padding: 10px;
 							font-size: 1.1em;
 						}
-						
 						button {
 							float: right;
 							width: 20px;
@@ -123,6 +166,7 @@ button {
 							line-height: 10px;
 							background-color: transparent;
 							border: none;
+							outline: none;
 						}
 						.card-desctiption {
 							width: 100%;
